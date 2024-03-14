@@ -1,6 +1,8 @@
-package com.practice.chat.DTO;
+package com.practice.chat.domain;
 
+import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
@@ -9,12 +11,20 @@ import lombok.Setter;
  */
 @Getter
 @Setter
+@NoArgsConstructor
+@Entity
 public class ChatMessage {
     public enum MessageType{
         ENTER,TALK
     }
     private MessageType type;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int index;
+    @Column
     private String roomId;
+    @Column
     private String sender;
+    @Column
     private String message;
 }
